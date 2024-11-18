@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebProgrammingAflevering.Models.ViewModels
 {
@@ -21,6 +22,7 @@ namespace WebProgrammingAflevering.Models.ViewModels
 
         [Compare("Password", ErrorMessage = "Passwords do not match")]
         [DataType(DataType.Password)]
+        [DisplayName("Repeat Password")]
         public string RepeatPassword { get; set; }
 
     }

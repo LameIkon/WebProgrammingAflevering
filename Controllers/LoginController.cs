@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using WebProgrammingAflevering.Data;
 using WebProgrammingAflevering.Models.Entities;
@@ -9,26 +13,78 @@ namespace WebProgrammingAflevering.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly ApplicationDbContext dbContext;
+        private readonly ApplicationDbContext _dbContext;
 
+
+        //Create a link to the database
         public LoginController(ApplicationDbContext dbContext) 
         {
-            this.dbContext = dbContext;
+            _dbContext = dbContext;
         }
 
-
-
+        
+        //The Index is the main login page
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Index() 
-        //{
+        [HttpPost]
+        public async Task<IActionResult> Index(LoginViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                // Looking for a user in the system with the right email and password 
+                var user = await _dbContext.Users.Where(x => x.Email == viewModel.Email && x.Password == viewModel.Password).FirstOrDefaultAsync();
+
+                if (user != null)
+                {
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, user.Email),
+                    };
+
+                    // Making the cookies that is used for authentication
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else 
+                {
+                    ModelState.AddModelError("", "Email or Password is not correct");
+                }
             
-        //}
+            }
+
+            return View(viewModel);
+
+        }
+
+        public async Task<IActionResult> LogOut() 
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        [HttpGet, Authorize]
+        public IActionResult Post() 
+        {
+            ViewBag.Name = HttpContext.User.Identity.Name;
+            return View();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Users() 
+        {
+            var users = await _dbContext.Users.ToListAsync<User>();
+
+            return View(users);
+        }
+
 
 
         [HttpGet]
@@ -39,35 +95,32 @@ namespace WebProgrammingAflevering.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Register(AddUserViewModel viewModel, User Users)
+        public async Task<IActionResult> Register(AddUserViewModel viewModel)
         {
-            bool userExists = await dbContext.Users.AnyAsync(x=>x.Email == Users.Email);
+            bool userExists = await _dbContext.Users.AnyAsync(x => x.Id == viewModel.Id);
 
             if (userExists) 
             {
-                
-            }
-
-            if (viewModel.Password == viewModel.RepeatPassword) 
-            {
+                ViewBag.Message = $"User with the email {viewModel.Email} already exists.";
                 return View();
             }
 
-
-            string passwordHash = viewModel.Password;
-            
-
-            var user = new User
+            if (ModelState.IsValid) 
             {
-                Email = viewModel.Email,
-                Password = passwordHash,
-            };
+                User newUser = new User();
+                newUser.Email = viewModel.Email;
+                newUser.Password = viewModel.Password;
+                
+                await _dbContext.Users.AddAsync(newUser);
+                await _dbContext.SaveChangesAsync();
 
-            await dbContext.Users.AddAsync(user);
+                ModelState.Clear();
+                ViewBag.Message = $"{newUser.Email} registered successfully. You can now login";
 
-            await dbContext.SaveChangesAsync();
-
-            return View();
+                return View();
+            }
+            
+            return View(viewModel);
 
         }
 

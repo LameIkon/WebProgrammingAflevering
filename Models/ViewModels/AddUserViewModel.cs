@@ -14,6 +14,10 @@ namespace WebProgrammingAflevering.Models.ViewModels
         //[RegularExpression(@"^", ErrorMessage = "Please Enter a valid Email")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Username is required")]
+        [MaxLength(30, ErrorMessage = "Max Username length is 30")]
+        public string Username { get; set; }
+
         [Required(ErrorMessage = "Password is required")]
         [StringLength(30, MinimumLength = 8, ErrorMessage = "Max 30 and min 8 characters allowed.")]
         [DataType(DataType.Password)]

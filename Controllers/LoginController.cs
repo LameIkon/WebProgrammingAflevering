@@ -42,7 +42,7 @@ namespace WebProgrammingAflevering.Controllers
                 {
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, user.Email),
+                        new Claim(ClaimTypes.Name, user.Username),
                     };
 
                     // Making the cookies that is used for authentication
@@ -69,24 +69,6 @@ namespace WebProgrammingAflevering.Controllers
         }
 
 
-        [HttpGet, Authorize]
-        public IActionResult Post() 
-        {
-            ViewBag.Name = HttpContext.User.Identity.Name;
-            return View();
-        }
-
-
-        [HttpGet]
-        public async Task<IActionResult> Users() 
-        {
-            var users = await _dbContext.Users.ToListAsync<User>();
-
-            return View(users);
-        }
-
-
-
         [HttpGet]
         public IActionResult Register() 
         {
@@ -110,6 +92,7 @@ namespace WebProgrammingAflevering.Controllers
                 User newUser = new User();
                 newUser.Email = viewModel.Email;
                 newUser.Password = viewModel.Password;
+                newUser.Username = viewModel.Username;
                 
                 await _dbContext.Users.AddAsync(newUser);
                 await _dbContext.SaveChangesAsync();

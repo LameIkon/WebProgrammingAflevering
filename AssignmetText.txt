@@ -6,15 +6,16 @@ Der skal være:
 
     (DONE) Formular til registrering af brugere
     (DONE) Formular til login
+    (DONE) Man skal kunne se en liste over brugere et sted
 
     Formularer skal bruge JavaScript og RegEx til at validere brugerinput
     I skal sikre jer mod Cross-Site Scripting (XSS)
     I skal sikre jer mod SQL Injection
 
-    Man skal kunne se en liste over brugere et sted
     Noget skal være responsivt
     I skal selv skrive både noget CSS og Javascript, men der må gerne suppleres med jQuery, Bootstrap & Fontawesome
     Der skal laves et ajax kald
+   
     Der skal være en .README-fil som fortæller
         hvordan systemet sættes op og startes
         hvor jeg kan finde de enkelte sider med implementering af afleveringens krav

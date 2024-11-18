@@ -60,7 +60,7 @@ namespace WebProgrammingAflevering.Controllers
             var user = new User
             {
                 Email = viewModel.Email,
-                PasswordHash = passwordHash,
+                Password = passwordHash,
             };
 
             await dbContext.Users.AddAsync(user);

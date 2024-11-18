@@ -2,11 +2,8 @@
 
 namespace WebProgrammingAflevering.Models.ViewModels
 {
-    public class AddUserViewModel
+    public class LoginViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
-
         [Required(ErrorMessage = "Email is required.")]
         [MaxLength(100, ErrorMessage = "Max 100 characters allowed.")]
         //TODO: Insert the RegEx for confirming emails
@@ -17,11 +14,5 @@ namespace WebProgrammingAflevering.Models.ViewModels
         [StringLength(30, MinimumLength = 8, ErrorMessage = "Max 30 and min 8 characters allowed.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
-
-        [Compare("Password", ErrorMessage = "Passwords do not match")]
-        [DataType(DataType.Password)]
-        public string RepeatPassword { get; set; }
-
     }
 }

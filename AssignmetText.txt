@@ -1,0 +1,25 @@
+I skal lave en fuld .NET MVC applikation hvor brugere kan uploade billeder med titel og beskrivelse. Kun brugere som er logget ind må kunne uploade og se hinandens uploads.
+
+Der må arbejdes alene eller i grupper af 2 – men i grupper skal hvert gruppemedlem lave en meningsfuld ændring eller tilføjelse.
+
+Der skal være:
+
+    Formular til registrering af brugere
+    Formular til login
+    Formularer skal bruge JavaScript og RegEx til at validere brugerinput
+    I skal sikre jer mod Cross-Site Scripting (CXX)
+    I skal sikre jer mod SQL Injection
+    Man skal kunne se en liste over brugere et sted
+    Noget skal være responsivt
+    I skal selv skrive både noget CSS og Javascript, men der må gerne suppleres med jQuery, Bootstrap & Fontawesome
+    Der skal laves et ajax kald
+    Der skal være en .README-fil som fortæller
+        hvordan systemet sættes op og startes
+        hvor jeg kan finde de enkelte sider med implementering af afleveringens krav
+        hvad du selv har lavet som er forskelligt fra det din makker har lavet
+
+ 
+
+Begrænsninger:
+
+    Der må IKKE anvendes Javascript frameworks som React og Angular

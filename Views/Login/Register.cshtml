@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Register Page";
+}
+
+@model AddUserViewModel
+
+<div class="text-left">
+    <h1 class="display-4">Login</h1>
+
+
+    <form method="post">
+
+        <div class="mt-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" asp-for="Email" />
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" asp-for="Password" />
+        </div>
+
+
+        <div class="mt-3">
+            <label class="form-label">Repeat Password</label>
+            <input type="password" class="form-control" asp-for="RepeatPassword" />
+        </div>
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+
+    </form>
+
+</div>

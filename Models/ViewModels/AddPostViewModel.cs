@@ -11,11 +11,10 @@ namespace WebProgrammingAflevering.Models.ViewModels
         public string? Description { get; set; }
 
         [Required]
-        public string Picture { get; set; }
+        public IFormFile Picture { get; set; }
 
         [Required]
         public Guid UserRefId { get; set; }
-
 
     }
 }

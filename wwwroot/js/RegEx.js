@@ -9,11 +9,17 @@ function addErrorMessage(element)
 {
     const ERROR_MESSAGE = 'error-message';
 
-    const ERROR_ID = (`${element.id}-${ERROR_MESSAGE}`);
-
-    console.log(ERROR_ID);
+    return (`${element.id}-${ERROR_MESSAGE}`);
 };
 
 
+EMAIL.addEventListener('change', function (event)
+{
+    const MESSAGE = addErrorMessage(EMAIL);
 
+    const ERROR = document.getElementById(MESSAGE);
+    ERROR.innerText = EMAIL.value;
+});
+    
 
+function newMessage() { }

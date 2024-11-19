@@ -13,19 +13,29 @@ function addErrorMessage(element)
 };
     
 
-function addErrorMessageListener(element)
+function addErrorMessageListener(element, regex)
 {
     if (element != null) {
         element.addEventListener('change', function () {
 
             const ERROR = document.getElementById(addErrorMessage(element));
-            ERROR.innerText = element.value;
+            if (ERROR.innerText.match(regex))
+            {
+                ERROR.innerText = 'Your name must begin with a capital letter';
+            }
+
         })
     }
 }
 
 
-addErrorMessageListener(EMAIL);
-addErrorMessageListener(USERNAME) ;
-addErrorMessageListener(PASSWORD);
-addErrorMessageListener(REPEAT_PASSWORD);
+function FuckYou()
+{
+    console.log('please fuck off');
+}
+
+
+addErrorMessageListener(USERNAME, REGEX_NAME);
+//addErrorMessageListener(USERNAME) ;
+//addErrorMessageListener(PASSWORD);
+//addErrorMessageListener(REPEAT_PASSWORD);

@@ -25,9 +25,12 @@ namespace WebProgrammingAflevering.Controllers
         }
 
 
+        [HttpGet, Authorize]
         public async Task<IActionResult> Index()
         {
             List<Post> posts = await _dbContext.Posts.ToListAsync<Post>();
+
+            posts.Reverse();
 
             return View(posts);
         }
@@ -61,7 +64,7 @@ namespace WebProgrammingAflevering.Controllers
                     await _dbContext.AddAsync(newPost);
                     await _dbContext.SaveChangesAsync();
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index");
                         
                 }
             }

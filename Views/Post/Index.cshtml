@@ -1,40 +1,19 @@
 ﻿@model IEnumerable<WebProgrammingAflevering.Models.Entities.Post>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Posts";
 }
 
-<h1>Index</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Picture)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
 @foreach (var item in Model) 
 {
-        <tr>
-            <td>
-                <img src="~/Images/@item.Picture" width="400px" height="100%"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-        </tr>
+    <div class="center">
+        <h3 class="title">
+            @Html.DisplayFor(modelItem => item.Title)
+        </h3>
+            <img class="posts" src="~/Images/@item.Picture"/>
+        <p class="discription">
+            @Html.DisplayFor(modelItem => item.Description)
+        </p>
+    </div>
 }
-    </tbody>
-</table>

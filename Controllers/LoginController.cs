@@ -49,7 +49,7 @@ namespace WebProgrammingAflevering.Controllers
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Post");
                 }
                 else 
                 {

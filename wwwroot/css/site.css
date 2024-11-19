@@ -20,3 +20,24 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+/*
+    Everything from here and down has been written by me
+*/
+
+.posts {
+    width: 50%;
+    height: auto;
+    max-width: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+.center {
+    text-align: center;
+    margin: auto;
+    justify-content: center;
+}
+

@@ -1,4 +1,4 @@
-I skal lave en fuld .NET MVC applikation hvor brugere kan uploade billeder med titel og beskrivelse. Kun brugere som er logget ind må kunne uploade og se hinandens uploads.
+I skal lave en fuld .NET MVC applikation hvor brugere kan (DONE)uploade billeder med titel og beskrivelse. Kun brugere som er logget ind må kunne uploade og se hinandens uploads.
 
 Der må arbejdes alene eller i grupper af 2 – men i grupper skal hvert gruppemedlem lave en meningsfuld ændring eller tilføjelse.
 

@@ -1,12 +1,22 @@
-﻿@{
+﻿@model IEnumerable<WebProgrammingAflevering.Models.Entities.Post>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<!-- 
-@if (Context.User.Identity.Name != null)
--->
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (Context.User.Identity.Name != null)
+{
+    
+    
+
+}
+else
+{
+    
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+
+}

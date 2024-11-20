@@ -75,6 +75,8 @@ namespace WebProgrammingAflevering.Controllers
             return View();
         }
 
+        const string xxsProtect = "<script>";
+
 
         [HttpPost]
         public async Task<IActionResult> Register(AddUserViewModel viewModel)
@@ -85,6 +87,12 @@ namespace WebProgrammingAflevering.Controllers
             {
                 ViewBag.Message = $"User with the email {viewModel.Email} already exists.";
                 return View();
+            }
+
+            if (viewModel.Username.Contains(xxsProtect) ^ viewModel.Email.Contains(xxsProtect) ^ viewModel.Password.Contains(xxsProtect))
+            {
+                ViewBag.Message = $"An acount cannot contain {xxsProtect}";
+                return View(viewModel);
             }
 
             if (ModelState.IsValid) 

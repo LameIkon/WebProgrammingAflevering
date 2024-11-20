@@ -42,6 +42,8 @@ namespace WebProgrammingAflevering.Controllers
             return View();
         }
 
+        const string xxsProtect = "<script>";
+
         [HttpPost, Authorize]
         public async Task<IActionResult> Add(AddPostViewModel viewModel) 
         {
@@ -50,6 +52,12 @@ namespace WebProgrammingAflevering.Controllers
             if (ModelState.IsValid && user != null) {
 
                 string stringFileName = UploadFile(viewModel);
+
+                if (stringFileName.Contains(xxsProtect) ^ viewModel.Title.Contains(xxsProtect) ^ viewModel.Description.Contains(xxsProtect))
+                {
+                    ViewBag.Message = $"A post cannot contain {xxsProtect}";
+                    return View(viewModel);
+                }
 
                 if (stringFileName != null) 
                 { 

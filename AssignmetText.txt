@@ -11,10 +11,9 @@ Der skal være:
     (DONE) I skal sikre jer mod SQL Injection
     (DONE) I skal selv skrive både noget CSS og Javascript, men der må gerne suppleres med jQuery, Bootstrap & Fontawesome
     (DONE) Formularer skal bruge JavaScript og RegEx til at validere brugerinput
-   
-    (remove all instances of <script> from username, email, title and discription)I skal sikre jer mod Cross-Site Scripting (XSS)
+    (DONE) I skal sikre jer mod Cross-Site Scripting (XSS)
 
-    (Watch video about it!)Der skal laves et ajax kald
+    (Watch video about it!) Der skal laves et ajax kald
    
     Der skal være en .README-fil som fortæller
         hvordan systemet sættes op og startes

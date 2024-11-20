@@ -1,0 +1,18 @@
+appsettings.json: Indsæt {database}, {port} og {password}
+
+
+I mappen js er der filerne RegEx.js og RegExPicture.js, dem har jeg selv skrevet.
+I RegEx.js valideres bruger inputet ved registering af en bruger. 
+På selve serveren er det under AddUserViewModel, LoginViewModel og AddPostViewModel det valideres.
+I LoginController og PostController saniteres der for xss
+
+
+I mappen css i filen site.css her er det markeret hvad jeg har skrevet.
+Den responsive del er at billederne skalere i forhold til størrelsen af skærmen.
+
+Registrering af brugere sker i LoginController under Register metoderne
+Login af brugere sker i LoginController under Index metoderne
+
+Listen af bruger findes under Users i applikationen, og implementeres i mappen HomeController ved Users metoden
+
+Jeg ved ikke hvordan jeg få et ajax kald til at fungere i denne applikation, men det jeg har skrevet er i ajax.js

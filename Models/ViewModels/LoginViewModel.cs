@@ -4,14 +4,14 @@ namespace WebProgrammingAflevering.Models.ViewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Email is required.")]
-        [MaxLength(100, ErrorMessage = "Max 100 characters allowed.")]
-        //TODO: Insert the RegEx for confirming emails
-        //[RegularExpression(@"^", ErrorMessage = "Please Enter a valid Email")]
+        [Required]
+        [MaxLength(100)]
+        [RegularExpression(@"[a-z0-9]+@[a-z0-9]+\.{1}[a-z]+\.?[a-z]+")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Password is required")]
-        [StringLength(30, MinimumLength = 8, ErrorMessage = "Max 30 and min 8 characters allowed.")]
+        [Required]
+        [StringLength(30, MinimumLength = 8)]
+        [RegularExpression(@"(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,30}")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

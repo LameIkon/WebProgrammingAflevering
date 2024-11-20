@@ -72,19 +72,32 @@ namespace WebProgrammingAflevering.Controllers
             return View(viewModel);
         }
 
+        private readonly string jpg = ".jpg";
+        private readonly string png = ".png";
 
-        private string UploadFile(AddPostViewModel viewModel) 
+
+        private string UploadFile(AddPostViewModel viewModel)
         {
             string fileName = null;
-            if (viewModel.Picture != null) 
+            if (viewModel.Picture != null)
             {
+
+
                 string uploadDir = Path.Combine(_webHostEnvi.WebRootPath, _pictureDir);
                 fileName = Guid.NewGuid().ToString() + "-" + viewModel.Picture.FileName;
-                string filePath = Path.Combine(uploadDir, fileName);
-
-                using (FileStream stream = new FileStream(filePath, FileMode.Create)) 
+                string extention = Path.GetExtension(fileName);
+                if (extention == jpg || extention == png)
                 {
-                    viewModel.Picture.CopyTo(stream);
+                    string filePath = Path.Combine(uploadDir, fileName);
+
+                    using (FileStream stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        viewModel.Picture.CopyTo(stream);
+                    }
+                }
+                else
+                {
+                    fileName = null;
                 }
             }
 

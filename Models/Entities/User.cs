@@ -9,16 +9,18 @@ namespace WebProgrammingAflevering.Models.Entities
     {
         public Guid Id { get; set; }
 
-        [Required(ErrorMessage = "Email is required.")]
-        [MaxLength(100, ErrorMessage = "Max 100 characters allowed.")]
+        [Required]
+        [MaxLength(100)]
+        [RegularExpression(@"[a-z0-9]+@[a-z0-9]+\.{1}[a-z]+\.?[a-z]+")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Password is required")]
-        [MaxLength(30, ErrorMessage = "Max 30 characters allowed.")]
+        [Required]
+        [StringLength(30, MinimumLength = 8)]
+        [RegularExpression(@"(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,30}")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Username is required")]
-        [MaxLength(30, ErrorMessage = "Max Username length is 30")]
+        [Required]
+        [StringLength(30, MinimumLength = 4)]
         public string Username { get; set; }
 
         public ICollection<Post>? Posts { get; set; }

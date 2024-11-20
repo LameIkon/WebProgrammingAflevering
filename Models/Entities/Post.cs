@@ -18,6 +18,7 @@ namespace WebProgrammingAflevering.Models.Entities
         public string? Description { get; set; }
 
         [Required]
+        [RegularExpression(@"/(\.jpg|\.png)/")]
         public string Picture { get; set; }
 
         [Required]

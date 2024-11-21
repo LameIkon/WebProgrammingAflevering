@@ -9,6 +9,7 @@ const ERROR_MESSAGE = 'error-message';
 if (REGISTER != null) {
     REGISTER.disabled = true;
 }
+
 let registerBooleans = [false, false, false, false]
 
 

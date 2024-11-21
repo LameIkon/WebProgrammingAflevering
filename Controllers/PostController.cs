@@ -17,7 +17,6 @@ namespace WebProgrammingAflevering.Controllers
         private readonly string _pictureDir = "Images";
 
 
-
         public PostController(ApplicationDbContext dbContext, IWebHostEnvironment webHostEnvi)
         {
             _dbContext = dbContext;
@@ -53,15 +52,32 @@ namespace WebProgrammingAflevering.Controllers
 
                 string stringFileName = UploadFile(viewModel);
 
-                if (stringFileName.Contains(xxsProtect) ^ viewModel.Title.Contains(xxsProtect) ^ viewModel.Description.Contains(xxsProtect))
+                if (viewModel.Title != null)
                 {
-                    ViewBag.Message = $"A post cannot contain {xxsProtect}";
-                    return View(viewModel);
+                    if (viewModel.Title.Contains(xxsProtect))
+                    {
+                        ViewBag.Message = $"A post cannot contain {xxsProtect}";
+                        return View(viewModel);
+                    }
+                }
+                if (viewModel.Description != null)
+                {
+                    if (viewModel.Description.Contains(xxsProtect))
+                    {
+                        ViewBag.Message = $"A post cannot contain {xxsProtect}";
+                        return View(viewModel);
+                    }
                 }
 
                 if (stringFileName != null) 
-                { 
-                
+                {
+
+                    if (stringFileName.Contains(xxsProtect))
+                    {
+                        ViewBag.Message = $"A post cannot contain {xxsProtect}";
+                        return View(viewModel);
+                    }
+
                     Post newPost = new Post();
 
                     newPost.Title = viewModel.Title;
@@ -89,11 +105,9 @@ namespace WebProgrammingAflevering.Controllers
             string fileName = null;
             if (viewModel.Picture != null)
             {
-
-
                 string uploadDir = Path.Combine(_webHostEnvi.WebRootPath, _pictureDir);
                 fileName = Guid.NewGuid().ToString() + "-" + viewModel.Picture.FileName;
-                string extention = Path.GetExtension(fileName);
+                string extention = Path.GetExtension(fileName).ToLower();
                 if (extention == jpg || extention == png)
                 {
                     string filePath = Path.Combine(uploadDir, fileName);
@@ -109,8 +123,7 @@ namespace WebProgrammingAflevering.Controllers
                 }
             }
 
-            return fileName;
-            
+            return fileName;  
         }
 
 

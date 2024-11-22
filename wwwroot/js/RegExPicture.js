@@ -50,7 +50,7 @@ if (PICTURE != null) {
             write('Format not allowed (Only .jpg and .png)')
         }
         else {
-            if (!FORMAT.match(/(.jpg|.png)/)) {
+            if (!FORMAT.match(/\S+(.jpg|.png)/)) {
                 write('Format not allowed (Only .jpg and .png)');
             }
             else {
